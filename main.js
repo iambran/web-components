@@ -4,20 +4,29 @@ class CustomerTestimonial extends HTMLElement {
 
         // 附加一个shadow root
         this.attachShadow({mode: 'open'});
+        
+    }
+
+    // connectedCallback() 生命周期回调函数
+    connectedCallback() {
+        let testimonialContent = this.dataset.content;
+        let testimonialAvatar = this.dataset.avatar;
+        let testimonialName = this.dataset.name;
+        let testimonialPosition = this.dataset.position;
         this.template = document.createElement('template');
         this.template.innerHTML = `
         <div class="testimonial">
             <div class="testimonial__content">
-            “Brandon's CSS Grid tutorial is awesome. It covers so many details. Love that you use diagram from Figma to explain those details.”
+                ${testimonialContent}
             </div>
             <div class="testimonial__footer">
-            <img alt="avatar" src="./img/avatar.jpg" class="testimonial__avatar">
+            <img alt="avatar" src="${testimonialAvatar}" class="testimonial__avatar">
             <div>
                 <div class="testimonial__name">
-                    Sienna Lee
+                    ${testimonialName}
                 </div>
                 <div class="testimonial__role">
-                    Web Administrator
+                    ${testimonialPosition}
                 </div>
             </div>
             </div>
@@ -26,6 +35,9 @@ class CustomerTestimonial extends HTMLElement {
 
         this.styles = document.createElement('style');
         this.styles.innerHTML = `
+        :host {
+            margin-top: 10rem;
+        }
         .testimonial {
             display: flex;
             flex-direction: column;
@@ -64,12 +76,6 @@ class CustomerTestimonial extends HTMLElement {
             font-size: 14px;
         }
         `;
-    }
-
-    // connectedCallback() 生命周期回调函数
-    connectedCallback() {
-        // this.appendChild(this.template.content);
-        // this.appendChild(this.styles);
         this.shadowRoot.appendChild(this.template.content);
         this.shadowRoot.appendChild(this.styles);
     }

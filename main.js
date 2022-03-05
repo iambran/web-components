@@ -35,8 +35,28 @@ class CustomerTestimonial extends HTMLElement {
 
         this.styles = document.createElement('style');
         this.styles.innerHTML = `
+        /*
         :host {
-            margin-top: 10rem;
+            display: block;
+            width: 50vw;
+            margin-top: 100px;
+        }
+
+        :host([orange]) .testimonial {
+            background: orange;
+        }
+
+        :host(.purple) .testimonial {
+            border: 5px solid purple;
+        }
+
+        :host(:not(.purple)) .testimonial {
+            border: 5px dashed black;
+        }
+        */
+
+        :host {
+            font-family: initial;
         }
         .testimonial {
             display: flex;
@@ -47,6 +67,8 @@ class CustomerTestimonial extends HTMLElement {
             padding: 4vmin 8vmin;
             border-radius: 20px;
             box-shadow: 0 2px 40px rgba(0 0 0 / 25%);
+
+            border: 5px solid var(--border-color, orange);
           }
           
         .testimonial__content {
@@ -65,6 +87,7 @@ class CustomerTestimonial extends HTMLElement {
             max-height: 50px;
             margin-right: 15px;
             border-radius: 999px;
+            border: 5px solid var(--avatar-border-color, green);
         }
           
         .testimonial__name {

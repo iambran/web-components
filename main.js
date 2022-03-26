@@ -1,5 +1,1 @@
-import CustomerTestimonial from './modules/testimonial.js'
-
-document.querySelector('button').addEventListener('click', () => {
-  document.querySelector('customer-testimonial').open();
-});
+import CustomAccordion from './modules/CustomAccordion.js'

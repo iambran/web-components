@@ -19,7 +19,7 @@ class CustomerAvatar extends HTMLElement {
         `;
 
         this.styles = document.createElement('style');
-        this.styles.innerHTML = `   
+        this.styles.innerHTML = `
         img {
             display: block;
             max-width: 50px;

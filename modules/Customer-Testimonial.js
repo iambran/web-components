@@ -1,5 +1,5 @@
-import CustomerAvatar from "./avatar.js";
-import CloseButton from "./close.js";
+import CustomerAvatar from "./Customer-Avatar.js";
+import CloseButton from "./Close-Button.js";
 class CustomerTestimonial extends HTMLElement {
     constructor() {
         super();
@@ -23,7 +23,7 @@ class CustomerTestimonial extends HTMLElement {
             console.log(e.composedPath());
             if (!e.composedPath().includes(this) && e.target.nodeName.toLowerCase() !== 'button') {
                 this.hide();
-            } 
+            }
         });
     }
 
@@ -49,12 +49,12 @@ class CustomerTestimonial extends HTMLElement {
             </div>
             </div>
             <close-button></close-button>
-        </div>  
+        </div>
         `;
 
         this.styles = document.createElement('style');
         this.styles.innerHTML = `
-        
+
         :host {
             display: none;
             max-width: 500px;
@@ -80,22 +80,22 @@ class CustomerTestimonial extends HTMLElement {
             margin: 0 auto;
             padding: 4vmin 8vmin;
         }
-          
+
         .testimonial__content {
             font-size: 25px;
             margin-bottom: 45px;
         }
-          
+
         .testimonial__footer {
             display: flex;
             align-items: center;
         }
-          
+
         .testimonial__name {
             font-size: 14px;
             font-weight: bold;
         }
-          
+
         .testimonial__role {
             font-size: 14px;
         }

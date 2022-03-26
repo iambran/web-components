@@ -18,7 +18,7 @@ class CloseButton extends HTMLElement {
     `;
 
     this.styles = document.createElement('style');
-    this.styles.innerHTML = `   
+    this.styles.innerHTML = `
       .close {
         position: absolute;
         top: -1rem;

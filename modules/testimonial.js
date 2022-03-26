@@ -1,16 +1,30 @@
 import CustomerAvatar from "./avatar.js";
+import CloseButton from "./close.js";
 class CustomerTestimonial extends HTMLElement {
     constructor() {
         super();
 
         // 附加一个shadow root
         this.attachShadow({mode: 'open'});
-        
     }
 
     // connectedCallback() 生命周期回调函数
     connectedCallback() {
         this.render();
+        // 事件监听器
+        this.shadowRoot.querySelector('close-button')
+            .addEventListener('click', (e) => {
+                // console.log(e.target);
+                this.hide();
+            });
+
+        document.addEventListener('click', (e) => {
+            console.log(e.target);
+            console.log(e.composedPath());
+            if (!e.composedPath().includes(this) && e.target.nodeName.toLowerCase() !== 'button') {
+                this.hide();
+            } 
+        });
     }
 
     render() {
@@ -34,6 +48,7 @@ class CustomerTestimonial extends HTMLElement {
                 </div>
             </div>
             </div>
+            <close-button></close-button>
         </div>  
         `;
 
@@ -41,12 +56,21 @@ class CustomerTestimonial extends HTMLElement {
         this.styles.innerHTML = `
         
         :host {
-            display: block;
+            display: none;
             max-width: 500px;
             margin-inline: auto;
             border-radius: 20px;
             box-shadow: 0 2px 40px rgba(0 0 0 / 25%);
             background: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+        }
+
+        :host(.show) {
+            display: block;
         }
 
         .testimonial {
@@ -54,7 +78,6 @@ class CustomerTestimonial extends HTMLElement {
             flex-direction: column;
             justify-content: space-between;
             margin: 0 auto;
-            cursor: pointer;
             padding: 4vmin 8vmin;
         }
           
@@ -81,8 +104,12 @@ class CustomerTestimonial extends HTMLElement {
         this.shadowRoot.appendChild(this.styles);
     }
 
-    changeBackground() {
-        this.style.background = 'orange';
+    open() {
+        this.classList.add('show');
+    }
+
+    hide() {
+        this.classList.remove('show');
     }
 }
 

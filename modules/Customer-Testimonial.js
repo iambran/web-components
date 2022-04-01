@@ -1,9 +1,12 @@
 import CustomerAvatar from "./Customer-Avatar.js";
 import CloseButton from "./Close-Button.js";
+
 class CustomerTestimonial extends HTMLElement {
+    static get observedAttributes() {
+      return ['data-name', 'data-position'];
+    }
     constructor() {
         super();
-
         // 附加一个shadow root
         this.attachShadow({mode: 'open'});
     }
@@ -19,14 +22,32 @@ class CustomerTestimonial extends HTMLElement {
             });
 
         document.addEventListener('click', (e) => {
-            console.log(e.target);
-            console.log(e.composedPath());
+            // console.log(e.target);
+            // console.log(e.composedPath());
             if (!e.composedPath().includes(this) && e.target.nodeName.toLowerCase() !== 'button') {
                 this.hide();
             }
         });
     }
 
+    // attributeChangedCallback() 生命周期回调函数
+    attributeChangedCallback(attr, oldValue, newValue) {
+      console.log(attr);
+      console.log(oldValue);
+      console.log(newValue);
+      console.log('data name属性发生变化');
+      if (oldValue) {
+        switch(attr) {
+          case 'data-name':
+            this.shadowRoot.querySelector('.testimonial__name').textContent = newValue;
+            break;
+          case 'data-position':
+            this.shadowRoot.querySelector('.testimonial__role').textContent = newValue;
+            break;
+        }
+
+      }
+    }
     render() {
         let testimonialContent = this.dataset.content;
         let testimonialName = this.dataset.name;

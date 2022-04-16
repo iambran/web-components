@@ -1,40 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Components #2 - Shadow DOM</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,400i,700">
-    <style>
-        * {box-sizing: border-box;}
-        body {
-            font-family: 'Lato', sans-serif;
-            height: 90vh;
-            display: grid;
-            place-content: center;
-            background: darkseagreen;
-        }
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Components #7 - Slots</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700">
+  <style>
+    * {box-sizing: border-box;}
+    body {
+      font-family: 'Montserrat', sans-serif;
+      min-height: 90vh;
+      padding: 2rem 8rem;
+      place-content: center;
+      --accent-color: #6C63FF;
+      --border-color: #D7D7D7;
+    }
+    img {
+      width: 100%;
+      display: block;
+      border-radius: 1rem;
+      height: 300px;
+      object-fit: cover;
+    }
 
-        button {
-            border-radius: 20px;
-            padding: 10px 40px;
-            border: none;
-            background: indigo;
-            color: white;
-            cursor: pointer;
-        }
-    </style>
+    :not(:defined) {
+      display: block;
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+
+    custom-tabs {
+      display: block;
+      margin-bottom: 4rem;
+    }
+  </style>
 </head>
 <body>
-    <button type="button">Open</button>
-    <customer-testimonial
-        data-content="“Brandon's CSS Grid tutorial is awesome. It covers so many details. Love that you use diagram from Figma to explain those details.”"
-        data-name="Senna Lee"
-        data-position="Web Administrator"
-    >
-    </customer-testimonial>
-    
-    <script type="module" src="main.js"></script>
+  <custom-tabs>
+    <button slot='tab'>Hello Spring</button>
+    <button slot='tab'>Howdy Summer</button>
+    <button slot='tab'>Hola Fall</button>
+    <div slot='panel'>
+      <div>
+        <h2>一年之计在于春</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et esse sit necessitatibus vero iure, tenetur, animi omnis ratione labore asperiores doloribus doloremque minus, rerum facere tempora magni totam vitae! Atque.</p>
+      </div>
+      <img src="./img/1.jpg" alt="">
+    </div>
+    <div slot='panel'>
+      <div>
+        <h2>Let's go swimming!</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et esse sit necessitatibus vero iure, tenetur, animi omnis ratione labore asperiores doloribus doloremque minus, rerum facere tempora magni totam vitae! Atque.</p>
+      </div>
+      <img src="./img/2.jpg" alt="">
+    </div>
+    <div slot='panel'>
+      <div>
+        <h2>Why not hiking?</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et esse sit necessitatibus vero iure, tenetur, animi omnis ratione labore asperiores doloribus doloremque minus, rerum facere tempora magni totam vitae! Atque.</p>
+      </div>
+      <img src="./img/3.jpg" alt="">
+    </div>
+  </custom-tabs>
+
+  <custom-tabs>
+    <button slot="tab">Hello</button>
+    <button slot="tab">Hola</button>
+    <button slot="tab">您好</button>
+    <div slot="panel">
+      <div>
+        <h2>Front End Developer</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi obcaecati illo maiores enim, nihil sed voluptatum labore. Reprehenderit similique aspernatur recusandae laboriosam cum sint, dolorum veritatis maiores, illo facere vitae!</p>
+
+      </div>
+      <img src="./img/app.png" alt="">
+    </div>
+    <div slot="panel">
+      <div>
+        <h2>Backend Developer</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur officia voluptatum officiis voluptates recusandae dolorum tempora, maiores incidunt dignissimos pariatur, sit quos quaerat unde fugiat ullam voluptate maxime reprehenderit alias!</p>
+      </div>
+      <img src="./img/api.png" alt="">
+    </div>
+    <div slot="panel">
+      <div>
+        <h2>UX Designer</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates vitae non aut. Mollitia nesciunt libero, quibusdam rerum repudiandae, dignissimos delectus nemo magnam, quidem, quod dolore perspiciatis. Voluptate officiis in enim!</p>
+      </div>
+      <img src="./img/database.png" alt="">
+    </div>
+  </custom-tabs>
+
+  <script type="module" src="main.js"></script>
 </body>
 </html>
